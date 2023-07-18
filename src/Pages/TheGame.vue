@@ -29,7 +29,7 @@ const ygame = ydoc.getMap("game");
 
 onMounted(() => {
   if (ygame.get("state") === undefined) {
-    ygame.set("state", "guessing");
+    ygame.set("state", "estimating");
   }
 });
 
@@ -55,8 +55,8 @@ const setName = (event) => {
   open.value = false;
 };
 
-const setGuess = (guess) => {
-  awareness.setLocalStateField("guess", guess);
+const setEstimate = (estimate) => {
+  awareness.setLocalStateField("estimate", estimate);
 };
 
 const setState = (state) => {
@@ -69,11 +69,11 @@ const setState = (state) => {
   <ul>
     <li v-for="[playerId, player] in players" :key="playerId">
       {{ player.name || "Unknown Player" }}:
-      <span v-show="state === 'showing'">{{ player.guess || "N/A" }}</span>
+      <span v-show="state === 'showing'">{{ player.estimate || "N/A" }}</span>
     </li>
   </ul>
   <button
-    v-show="state === 'guessing'"
+    v-show="state === 'estimating'"
     class="rounded-md bg-indigo-50 px-3.5 py-2.5 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100"
     type="button"
     @click="setState('showing')"
@@ -84,19 +84,19 @@ const setState = (state) => {
     v-show="state === 'showing'"
     class="rounded-md bg-indigo-50 px-3.5 py-2.5 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100"
     type="button"
-    @click="setState('guessing')"
+    @click="setState('estimating')"
   >
     Hide
   </button>
   <button
-    v-for="guess in [1, 2, 3, 5, 8, 13]"
-    :key="guess"
-    :disabled="guess === me?.guess"
+    v-for="estimate in [1, 2, 3, 5, 8, 13]"
+    :key="estimate"
+    :disabled="estimate === me?.estimate"
     class="m-4 rounded-full bg-indigo-600 h-12 w-12 text-white shadow-sm disabled:bg-indigo-500 hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
     type="button"
-    @click="setGuess(guess)"
+    @click="setEstimate(estimate)"
   >
-    {{ guess }}
+    {{ estimate }}
   </button>
   <TransitionRoot :show="open" as="template">
     <Dialog as="div" class="relative z-10">
