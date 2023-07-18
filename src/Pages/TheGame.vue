@@ -28,8 +28,10 @@ const provider = new WebrtcProvider(props.id, ydoc, {
 const awareness = provider.awareness;
 
 const players = ref(Array.from(awareness.getStates().entries()));
+const me = ref(awareness.getLocalState());
 
 awareness.on("change", () => {
+  me.value = awareness.getLocalState();
   players.value = Array.from(awareness.getStates().entries());
 });
 
@@ -38,15 +40,29 @@ const setName = (event) => {
   awareness.setLocalStateField("name", name);
   open.value = false;
 };
+
+const setGuess = (guess) => {
+  awareness.setLocalStateField("guess", guess);
+};
 </script>
 
 <template>
   <h1>The Game</h1>
   <ul>
     <li v-for="[playerId, player] in players" :key="playerId">
-      {{ player.name || "N/A" }}
+      {{ player.name || "Unknown Player" }}: {{ player.guess || "N/A" }}
     </li>
   </ul>
+  <button
+    v-for="guess in [1, 2, 3, 5, 8, 13]"
+    :key="guess"
+    :disabled="guess === me?.guess"
+    class="m-4 rounded-full bg-indigo-600 h-12 w-12 text-white shadow-sm disabled:bg-indigo-500 hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+    type="button"
+    @click="setGuess(guess)"
+  >
+    {{ guess }}
+  </button>
   <TransitionRoot :show="open" as="template">
     <Dialog as="div" class="relative z-10">
       <TransitionChild
