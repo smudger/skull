@@ -1,7 +1,7 @@
 <script setup>
 import * as Y from "yjs";
 import { WebrtcProvider } from "y-webrtc";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import {
   Dialog,
   DialogPanel,
@@ -25,6 +25,20 @@ const provider = new WebrtcProvider(props.id, ydoc, {
   password: props.code,
 });
 
+const ygame = ydoc.getMap("game");
+
+onMounted(() => {
+  if (ygame.get("state") === undefined) {
+    ygame.set("state", "guessing");
+  }
+});
+
+const state = ref(ygame.get("state"));
+
+ygame.observe(() => {
+  state.value = ygame.get("state");
+});
+
 const awareness = provider.awareness;
 
 const players = ref(Array.from(awareness.getStates().entries()));
@@ -44,15 +58,36 @@ const setName = (event) => {
 const setGuess = (guess) => {
   awareness.setLocalStateField("guess", guess);
 };
+
+const setState = (state) => {
+  ygame.set("state", state);
+};
 </script>
 
 <template>
-  <h1>The Game</h1>
+  <h1>The Game: {{ state }}</h1>
   <ul>
     <li v-for="[playerId, player] in players" :key="playerId">
-      {{ player.name || "Unknown Player" }}: {{ player.guess || "N/A" }}
+      {{ player.name || "Unknown Player" }}:
+      <span v-show="state === 'showing'">{{ player.guess || "N/A" }}</span>
     </li>
   </ul>
+  <button
+    v-show="state === 'guessing'"
+    class="rounded-md bg-indigo-50 px-3.5 py-2.5 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100"
+    type="button"
+    @click="setState('showing')"
+  >
+    Reveal
+  </button>
+  <button
+    v-show="state === 'showing'"
+    class="rounded-md bg-indigo-50 px-3.5 py-2.5 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100"
+    type="button"
+    @click="setState('guessing')"
+  >
+    Hide
+  </button>
   <button
     v-for="guess in [1, 2, 3, 5, 8, 13]"
     :key="guess"
