@@ -37,4 +37,14 @@ describe("EstimateSelector", () => {
 
     expect(wrapper.emitted()["change"][1][0]).toBe(3);
   });
+
+  it("renders correctly", () => {
+    const options = [1, 2, 3];
+
+    const wrapper = mount(EstimateSelector, {
+      props: { options },
+    });
+
+    expect(wrapper.element).toMatchSnapshot();
+  });
 });

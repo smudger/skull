@@ -10,12 +10,12 @@ defineEmits(["change"]);
 
 <template>
   <RadioGroup
-    class="mt-2"
+    class="fixed bottom-0 inset-x-0 flex items-center justify-center px-4 py-6"
     name="estimate"
     @update:model-value="$emit('change', $event)"
   >
     <RadioGroupLabel class="sr-only">Estimate</RadioGroupLabel>
-    <div class="grid grid-cols-3 gap-3 sm:grid-cols-6">
+    <div class="grid grid-cols-4 gap-3 sm:grid-cols-6 lg:grid-cols-12">
       <RadioGroupOption
         v-for="option in options"
         :key="option"
@@ -30,7 +30,7 @@ defineEmits(["change"]);
             checked
               ? 'bg-indigo-600 text-white hover:bg-indigo-500'
               : 'ring-1 ring-inset ring-gray-300 bg-white text-gray-900 hover:bg-gray-50',
-            'flex items-center justify-center rounded-md py-3 px-3 text-sm font-semibold uppercase sm:flex-1',
+            'flex items-center justify-center rounded-md px-6 py-8 text-sm font-semibold uppercase sm:flex-1',
           ]"
         >
           <RadioGroupLabel as="span">{{ option }}</RadioGroupLabel>

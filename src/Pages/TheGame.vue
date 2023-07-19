@@ -83,7 +83,10 @@ const joinGame = (name) => {
     Hide
   </button>
   <div v-show="state === 'estimating'">
-    <EstimateSelector :options="[1, 2, 3, 5, 8, 13]" @change="setEstimate" />
+    <EstimateSelector
+      :options="[0, 0.5, 1, 2, 3, 5, 8, 13, 20, 40, 100, '?']"
+      @change="setEstimate"
+    />
   </div>
   <JoinGameModal :show="showJoinGameModal" @join="joinGame" />
 </template>

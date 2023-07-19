@@ -1,0 +1,64 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`EstimateSelector > renders correctly 1`] = `
+<div
+  data-v-app=""
+>
+  
+  <div
+    class="fixed bottom-0 inset-x-0 flex items-center justify-center px-4 py-6"
+    id="headlessui-radiogroup-17"
+    role="radiogroup"
+  >
+    <label
+      class="sr-only"
+      id="headlessui-label-18"
+    >
+      Estimate
+    </label>
+    <div
+      class="grid grid-cols-4 gap-3 sm:grid-cols-6 lg:grid-cols-12"
+    >
+      
+      <div
+        aria-checked="false"
+        class="cursor-pointer focus:outline-none ring-1 ring-inset ring-gray-300 bg-white text-gray-900 hover:bg-gray-50 flex items-center justify-center rounded-md px-6 py-8 text-sm font-semibold uppercase sm:flex-1"
+        id="headlessui-radiogroup-option-19"
+        role="radio"
+      >
+        <span
+          id="headlessui-label-20"
+        >
+          1
+        </span>
+      </div>
+      <div
+        aria-checked="false"
+        class="cursor-pointer focus:outline-none ring-1 ring-inset ring-gray-300 bg-white text-gray-900 hover:bg-gray-50 flex items-center justify-center rounded-md px-6 py-8 text-sm font-semibold uppercase sm:flex-1"
+        id="headlessui-radiogroup-option-21"
+        role="radio"
+      >
+        <span
+          id="headlessui-label-22"
+        >
+          2
+        </span>
+      </div>
+      <div
+        aria-checked="false"
+        class="cursor-pointer focus:outline-none ring-1 ring-inset ring-gray-300 bg-white text-gray-900 hover:bg-gray-50 flex items-center justify-center rounded-md px-6 py-8 text-sm font-semibold uppercase sm:flex-1"
+        id="headlessui-radiogroup-option-23"
+        role="radio"
+      >
+        <span
+          id="headlessui-label-24"
+        >
+          3
+        </span>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+`;
