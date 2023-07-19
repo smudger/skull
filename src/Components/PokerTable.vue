@@ -8,8 +8,10 @@ defineProps({
 </script>
 
 <template>
-  <ul>
-    <li v-for="[playerId, player] in players" :key="playerId">
+  <ul
+    class="w-full flex flex-col justify-between items-center gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6"
+  >
+    <li v-for="[playerId, player] in players" :key="playerId" class="mx-auto">
       <PokerPlayer
         :estimate="player.estimate"
         :name="player.name"

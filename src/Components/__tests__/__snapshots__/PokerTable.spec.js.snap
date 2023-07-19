@@ -1,22 +1,30 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`PokerTable > renders correctly 1`] = `
-<ul>
+<ul
+  class="w-full flex flex-col justify-between items-center gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6"
+>
   
-  <li>
+  <li
+    class="mx-auto"
+  >
     <poker-player-stub
       estimate="5"
       name="Constance"
       showestimate="true"
     />
   </li>
-  <li>
+  <li
+    class="mx-auto"
+  >
     <poker-player-stub
       name="Leslie"
       showestimate="true"
     />
   </li>
-  <li>
+  <li
+    class="mx-auto"
+  >
     <poker-player-stub
       showestimate="true"
     />

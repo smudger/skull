@@ -60,29 +60,31 @@ const joinGame = (name) => {
 </script>
 
 <template>
-  <h1>The Game: {{ state }}</h1>
-  <button
-    v-show="state === 'estimating'"
-    class="rounded-md bg-indigo-50 px-3.5 py-2.5 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100"
-    type="button"
-    @click="setState('showing')"
-  >
-    Reveal
-  </button>
-  <button
-    v-show="state === 'showing'"
-    class="rounded-md bg-indigo-50 px-3.5 py-2.5 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100"
-    type="button"
-    @click="setState('estimating')"
-  >
-    Hide
-  </button>
-  <PokerTable :players="players" :show-estimates="state === 'showing'" />
-  <div v-show="state === 'estimating'">
-    <EstimateSelector
-      :options="[0, 0.5, 1, 2, 3, 5, 8, 13, 20, 40, 100, '?']"
-      @change="setEstimate"
-    />
+  <div class="bg-gray-50 h-full">
+    <h1>The Game: {{ state }}</h1>
+    <button
+      v-show="state === 'estimating'"
+      class="rounded-md bg-indigo-50 px-3.5 py-2.5 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100"
+      type="button"
+      @click="setState('showing')"
+    >
+      Reveal
+    </button>
+    <button
+      v-show="state === 'showing'"
+      class="rounded-md bg-indigo-50 px-3.5 py-2.5 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100"
+      type="button"
+      @click="setState('estimating')"
+    >
+      Hide
+    </button>
+    <PokerTable :players="players" :show-estimates="state === 'showing'" />
+    <div v-show="state === 'estimating'">
+      <EstimateSelector
+        :options="[0, 0.5, 1, 2, 3, 5, 8, 13, 20, 40, 100, '?']"
+        @change="setEstimate"
+      />
+    </div>
+    <JoinGameModal :show="showJoinGameModal" @join="joinGame" />
   </div>
-  <JoinGameModal :show="showJoinGameModal" @join="joinGame" />
 </template>

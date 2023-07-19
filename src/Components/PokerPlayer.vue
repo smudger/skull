@@ -20,7 +20,7 @@ const avatar = computed(
     :class="[
       name ? 'bg-gray-800 border-gray-800' : 'border-dashed border-gray-300',
     ]"
-    class="rounded-2xl border-2 justify-between flex sm:flex-col-reverse w-72 sm:w-64 items-center px-6 py-4 space-x-2 sm:space-x-0"
+    class="rounded-2xl border-2 justify-between flex sm:flex-col-reverse w-80 sm:w-64 items-center px-6 py-4 space-x-2 sm:space-x-0"
   >
     <div class="sm:mt-4">
       <h3
@@ -38,7 +38,7 @@ const avatar = computed(
         class="h-16 w-16 sm:h-32 sm:w-32 shrink-0 flex items-center justify-center rounded-full"
       >
         <span
-          class="text-white font-mono font-semibold leading-7 tracking-tight text-xl"
+          class="text-white font-mono font-semibold leading-7 tracking-tight text-xl sm:text-4xl"
         >
           {{ estimate }}
         </span>
