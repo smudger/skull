@@ -1,9 +1,9 @@
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { config, shallowMount } from "@vue/test-utils";
-import AppModal from "@/Components/AppModal.vue";
+import BaseModal from "@/Components/Base/BaseModal.vue";
 import { TransitionRoot } from "@headlessui/vue";
 
-describe("AppModal", () => {
+describe("BaseModal", () => {
   beforeAll(() => {
     config.global.renderStubDefaultSlot = true;
   });
@@ -13,7 +13,7 @@ describe("AppModal", () => {
   });
 
   it("is visible when the show prop is true", () => {
-    const wrapper = shallowMount(AppModal, {
+    const wrapper = shallowMount(BaseModal, {
       props: { show: true },
     });
 
@@ -21,7 +21,7 @@ describe("AppModal", () => {
   });
 
   it("is not visible when the show prop is false", () => {
-    const wrapper = shallowMount(AppModal, {
+    const wrapper = shallowMount(BaseModal, {
       props: { show: false },
     });
 
@@ -29,7 +29,7 @@ describe("AppModal", () => {
   });
 
   it("renders the content that is passed to its slot", async () => {
-    const wrapper = shallowMount(AppModal, {
+    const wrapper = shallowMount(BaseModal, {
       props: { show: true },
       slots: {
         default: "<p>Put me in a modal</p>",
@@ -40,7 +40,7 @@ describe("AppModal", () => {
   });
 
   it("renders correctly when visible", () => {
-    const wrapper = shallowMount(AppModal, {
+    const wrapper = shallowMount(BaseModal, {
       props: { show: true },
     });
 

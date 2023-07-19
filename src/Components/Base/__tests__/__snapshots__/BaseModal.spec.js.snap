@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`AppModal > renders correctly when visible 1`] = `
+exports[`BaseModal > renders correctly when visible 1`] = `
 <anonymous-stub
   appear="false"
   as="template"

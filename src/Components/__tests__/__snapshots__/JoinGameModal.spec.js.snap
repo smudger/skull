@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`JoinGameModal > renders correctly when visible 1`] = `
-<app-modal-stub
+<base-modal-stub
   show="true"
 >
   <div
@@ -49,5 +49,5 @@ exports[`JoinGameModal > renders correctly when visible 1`] = `
       </div>
     </form>
   </div>
-</app-modal-stub>
+</base-modal-stub>
 `;

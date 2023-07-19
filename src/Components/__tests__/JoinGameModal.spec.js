@@ -1,7 +1,7 @@
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { config, shallowMount } from "@vue/test-utils";
-import AppModal from "@/Components/AppModal.vue";
 import JoinGameModal from "@/Components/JoinGameModal.vue";
+import BaseModal from "@/Components/Base/BaseModal.vue";
 
 describe("JoinGameModal", () => {
   beforeAll(() => {
@@ -17,7 +17,7 @@ describe("JoinGameModal", () => {
       props: { show: true },
     });
 
-    expect(wrapper.findComponent(AppModal).props().show).toBe(true);
+    expect(wrapper.findComponent(BaseModal).props().show).toBe(true);
   });
 
   it("is not visible when the show prop is false", () => {
@@ -25,7 +25,7 @@ describe("JoinGameModal", () => {
       props: { show: false },
     });
 
-    expect(wrapper.findComponent(AppModal).props().show).toBe(false);
+    expect(wrapper.findComponent(BaseModal).props().show).toBe(false);
   });
 
   it("emits a join event when the form is submitted", async () => {

@@ -1,6 +1,6 @@
 <script setup>
-import AppModal from "@/Components/AppModal.vue";
 import { DialogTitle } from "@headlessui/vue";
+import BaseModal from "@/Components/Base/BaseModal.vue";
 
 defineProps({
   show: { type: Boolean, required: true },
@@ -16,7 +16,7 @@ const joinGame = (event) => {
 </script>
 
 <template>
-  <AppModal :show="show">
+  <BaseModal :show="show">
     <div class="text-center">
       <form @submit.prevent="joinGame">
         <DialogTitle
@@ -45,5 +45,5 @@ const joinGame = (event) => {
         </div>
       </form>
     </div>
-  </AppModal>
+  </BaseModal>
 </template>
