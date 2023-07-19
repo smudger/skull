@@ -3,6 +3,7 @@ import * as Y from "yjs";
 import { WebrtcProvider } from "y-webrtc";
 import { onMounted, ref } from "vue";
 import JoinGameModal from "@/Components/JoinGameModal.vue";
+import EstimateSelector from "@/Components/EstimateSelector.vue";
 
 const props = defineProps({
   id: { type: String, required: true },
@@ -41,12 +42,12 @@ awareness.on("change", () => {
   players.value = Array.from(awareness.getStates().entries());
 });
 
-const setEstimate = (estimate) => {
-  awareness.setLocalStateField("estimate", estimate);
-};
-
 const setState = (state) => {
   ygame.set("state", state);
+};
+
+const setEstimate = (estimate) => {
+  awareness.setLocalStateField("estimate", estimate);
 };
 
 const showJoinGameModal = ref(true);
@@ -81,15 +82,6 @@ const joinGame = (name) => {
   >
     Hide
   </button>
-  <button
-    v-for="estimate in [1, 2, 3, 5, 8, 13]"
-    :key="estimate"
-    :disabled="estimate === me?.estimate"
-    class="m-4 rounded-full bg-indigo-600 h-12 w-12 text-white shadow-sm disabled:bg-indigo-500 hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-    type="button"
-    @click="setEstimate(estimate)"
-  >
-    {{ estimate }}
-  </button>
+  <EstimateSelector :options="[1, 2, 3, 5, 8, 13]" @change="setEstimate" />
   <JoinGameModal :show="showJoinGameModal" @join="joinGame" />
 </template>
