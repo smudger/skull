@@ -1,12 +1,10 @@
 import { describe, expect, it } from "vitest";
 import { RouterLinkStub, shallowMount } from "@vue/test-utils";
-import TheHome from "@/Pages/TheHome.vue";
+import TheNotFound from "@/Pages/TheNotFound.vue";
 
-describe("TheHome", () => {
-  window.crypto = { randomUUID: () => "test-uuid" };
-
+describe("TheNotFound", () => {
   it("should render correctly", () => {
-    const wrapper = shallowMount(TheHome, {
+    const wrapper = shallowMount(TheNotFound, {
       global: {
         stubs: {
           RouterLink: RouterLinkStub,
@@ -17,8 +15,8 @@ describe("TheHome", () => {
     expect(wrapper.element).toMatchSnapshot();
   });
 
-  it("should render a link to start a new game", () => {
-    const wrapper = shallowMount(TheHome, {
+  it("should render a link to the homepage", () => {
+    const wrapper = shallowMount(TheNotFound, {
       global: {
         stubs: {
           RouterLink: RouterLinkStub,
@@ -27,9 +25,7 @@ describe("TheHome", () => {
     });
 
     expect(wrapper.findComponent(RouterLinkStub).props().to).toEqual({
-      name: "Game",
-      params: { id: "test-uuid" },
-      query: { code: expect.stringMatching(/\d{6}/) },
+      name: "Home",
     });
   });
 });
