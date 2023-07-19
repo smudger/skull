@@ -5,6 +5,7 @@ import { onMounted, ref } from "vue";
 import JoinGameModal from "@/Components/JoinGameModal.vue";
 import EstimateSelector from "@/Components/EstimateSelector.vue";
 import PokerTable from "@/Components/PokerTable.vue";
+import PokerPlayer from "@/Components/PokerPlayer.vue";
 
 const props = defineProps({
   id: { type: String, required: true },
@@ -61,6 +62,20 @@ const joinGame = (name) => {
 
 <template>
   <h1>The Game: {{ state }}</h1>
+  <PokerPlayer :estimate="undefined" :name="undefined" :show-estimate="false" />
+  <PokerPlayer
+    :estimate="undefined"
+    :show-estimate="false"
+    name="Constance Wu"
+  />
+  <PokerPlayer :estimate="3" :show-estimate="false" name="Constance Wu" />
+  <PokerPlayer :estimate="undefined" :name="undefined" :show-estimate="true" />
+  <PokerPlayer
+    :estimate="undefined"
+    :show-estimate="true"
+    name="Constance Wu"
+  />
+  <PokerPlayer :estimate="3" :show-estimate="true" name="Constance Wu" />
   <button
     v-show="state === 'estimating'"
     class="rounded-md bg-indigo-50 px-3.5 py-2.5 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100"
