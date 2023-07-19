@@ -65,7 +65,7 @@ const joinGame = (name) => {
   <div class="bg-gray-100 p-8">
     <PokerPlayer
       :estimate="3"
-      :show-estimate="true"
+      :show-estimate="false"
       class="mb-2"
       name="Constance Wu"
     />

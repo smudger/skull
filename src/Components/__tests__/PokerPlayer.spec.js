@@ -51,4 +51,40 @@ describe("PokerPlayer", () => {
     expect(wrapper.text()).toContain("3");
     expect(wrapper.find("img").exists()).toBe(false);
   });
+
+  it("renders correctly when there is no name", () => {
+    const wrapper = shallowMount(PokerPlayer, {
+      props: {
+        name: undefined,
+        estimate: 3,
+        showEstimate: true,
+      },
+    });
+
+    expect(wrapper.element).toMatchSnapshot();
+  });
+
+  it("renders correctly when show estimate is false", () => {
+    const wrapper = shallowMount(PokerPlayer, {
+      props: {
+        name: "Constance Wu",
+        estimate: 3,
+        showEstimate: false,
+      },
+    });
+
+    expect(wrapper.element).toMatchSnapshot();
+  });
+
+  it("renders correctly when show estimate is true", () => {
+    const wrapper = shallowMount(PokerPlayer, {
+      props: {
+        name: "Constance Wu",
+        estimate: 3,
+        showEstimate: true,
+      },
+    });
+
+    expect(wrapper.element).toMatchSnapshot();
+  });
 });
