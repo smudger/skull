@@ -15,7 +15,29 @@ const avatar = computed(
 </script>
 
 <template>
-  <img v-if="name" :src="avatar" alt="avatar" class="h-16 w-16 text-gray-300" />
-  <p>{{ name }}</p>
-  <p v-if="showEstimate">{{ estimate }}</p>
+  <div
+    class="rounded-2xl justify-between flex w-72 items-center bg-gray-800 px-6 py-4 space-x-2"
+  >
+    <h3
+      class="text-base font-semibold leading-7 tracking-tight text-white whitespace-nowrap truncate"
+    >
+      {{ name }}
+    </h3>
+    <div
+      v-if="showEstimate"
+      class="h-16 w-16 shrink-0 flex items-center justify-center rounded-full bg-indigo-600"
+    >
+      <span
+        class="text-white font-mono font-semibold leading-7 tracking-tight text-xl"
+      >
+        {{ estimate }}
+      </span>
+    </div>
+    <img
+      v-else
+      :src="avatar"
+      alt="avatar"
+      class="h-16 w-16 shrink-0 rounded-full bg-white"
+    />
+  </div>
 </template>

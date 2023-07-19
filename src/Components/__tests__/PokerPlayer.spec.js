@@ -11,59 +11,31 @@ describe("PokerPlayer", () => {
     vi.clearAllMocks();
   });
 
-  describe("when the player has a name", () => {
-    it("displays the player's name", () => {
-      const wrapper = shallowMount(PokerPlayer, {
-        props: {
-          name: "Constance Wu",
-          estimate: 3,
-          showEstimate: false,
-        },
-      });
-
-      expect(wrapper.text()).toContain("Constance Wu");
+  it("displays the player's name", () => {
+    const wrapper = shallowMount(PokerPlayer, {
+      props: {
+        name: "Constance Wu",
+        estimate: 3,
+        showEstimate: false,
+      },
     });
 
-    it("displays an avatar based on the player's name", () => {
-      const wrapper = shallowMount(PokerPlayer, {
-        props: {
-          name: "Constance Wu",
-          estimate: 3,
-          showEstimate: false,
-        },
-      });
-
-      expect(wrapper.find("img").exists()).toBe(true);
-      expect(wrapper.find("img").attributes("src")).toBe(
-        "data:image/svg+xml;utf8,image-url",
-      );
-    });
+    expect(wrapper.text()).toContain("Constance Wu");
   });
 
-  describe("when the player does not have a name", () => {
-    it("does not display any text", () => {
-      const wrapper = shallowMount(PokerPlayer, {
-        props: {
-          name: undefined,
-          estimate: undefined,
-          showEstimate: false,
-        },
-      });
-
-      expect(wrapper.text()).toBe("");
+  it("displays an avatar based on the player's name", () => {
+    const wrapper = shallowMount(PokerPlayer, {
+      props: {
+        name: "Constance Wu",
+        estimate: 3,
+        showEstimate: false,
+      },
     });
 
-    it("does not display an avatar", () => {
-      const wrapper = shallowMount(PokerPlayer, {
-        props: {
-          name: undefined,
-          estimate: undefined,
-          showEstimate: false,
-        },
-      });
-
-      expect(wrapper.find("img").exists()).toBe(false);
-    });
+    expect(wrapper.find("img").exists()).toBe(true);
+    expect(wrapper.find("img").attributes("src")).toBe(
+      "data:image/svg+xml;utf8,image-url",
+    );
   });
 
   it("displays the player's estimate when the show estimate prop is true", () => {
@@ -76,9 +48,10 @@ describe("PokerPlayer", () => {
     });
 
     expect(wrapper.text()).toContain("3");
+    expect(wrapper.find("img").exists()).toBe(false);
   });
 
-  it("does not display the player's estimate when the show estimate prop is false", () => {
+  it("displays the player's avatar when the show estimate prop is false", () => {
     const wrapper = shallowMount(PokerPlayer, {
       props: {
         name: "Constance Wu",
@@ -88,5 +61,9 @@ describe("PokerPlayer", () => {
     });
 
     expect(wrapper.text()).not.toContain("3");
+    expect(wrapper.find("img").exists()).toBe(true);
+    expect(wrapper.find("img").attributes("src")).toBe(
+      "data:image/svg+xml;utf8,image-url",
+    );
   });
 });
