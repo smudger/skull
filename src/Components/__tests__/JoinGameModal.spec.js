@@ -42,6 +42,14 @@ describe("JoinGameModal", () => {
     expect(wrapper.emitted("join")[0][0]).toBe("Constance Wu");
   });
 
+  it("requires you to choose a name", async () => {
+    const wrapper = shallowMount(JoinGameModal, {
+      props: { show: true },
+    });
+
+    expect(wrapper.find("input").attributes()).toHaveProperty("required");
+  });
+
   it("renders correctly when visible", () => {
     const wrapper = shallowMount(JoinGameModal, {
       props: { show: true },
