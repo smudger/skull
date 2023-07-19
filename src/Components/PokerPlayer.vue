@@ -34,7 +34,7 @@ const avatar = computed(
     <div>
       <div
         v-if="showEstimate && name"
-        :class="[estimate ? 'bg-indigo-600' : '']"
+        :class="[estimate !== undefined ? 'bg-indigo-600' : '']"
         class="h-16 w-16 sm:h-32 sm:w-32 shrink-0 flex items-center justify-center rounded-full"
       >
         <span
@@ -45,13 +45,13 @@ const avatar = computed(
       </div>
       <div v-else-if="name" class="relative">
         <img
-          :class="[estimate ? 'ring-4 ring-indigo-600' : '']"
+          :class="[estimate !== undefined ? 'ring-4 ring-indigo-600' : '']"
           :src="avatar"
           alt="avatar"
           class="h-16 w-16 sm:h-32 sm:w-32 shrink-0 rounded-full bg-white"
         />
         <span
-          v-if="estimate"
+          v-if="estimate !== undefined"
           class="absolute right-0 top-0 sm:right-1 sm:top-1 block h-4 sm:h-6 w-4 sm:w-6 rounded-full bg-indigo-600 ring-2 ring-white text-white"
         >
           <CheckIcon />
