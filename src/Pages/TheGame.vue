@@ -4,6 +4,7 @@ import { WebrtcProvider } from "y-webrtc";
 import { onMounted, ref } from "vue";
 import JoinGameModal from "@/Components/JoinGameModal.vue";
 import EstimateSelector from "@/Components/EstimateSelector.vue";
+import PokerTable from "@/Components/PokerTable.vue";
 
 const props = defineProps({
   id: { type: String, required: true },
@@ -60,12 +61,6 @@ const joinGame = (name) => {
 
 <template>
   <h1>The Game: {{ state }}</h1>
-  <ul>
-    <li v-for="[playerId, player] in players" :key="playerId">
-      {{ player.name || "Unknown Player" }}:
-      <span v-show="state === 'showing'">{{ player.estimate || "N/A" }}</span>
-    </li>
-  </ul>
   <button
     v-show="state === 'estimating'"
     class="rounded-md bg-indigo-50 px-3.5 py-2.5 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100"
@@ -82,6 +77,7 @@ const joinGame = (name) => {
   >
     Hide
   </button>
+  <PokerTable :players="players" :show-estimates="state === 'showing'" />
   <div v-show="state === 'estimating'">
     <EstimateSelector
       :options="[0, 0.5, 1, 2, 3, 5, 8, 13, 20, 40, 100, '?']"
