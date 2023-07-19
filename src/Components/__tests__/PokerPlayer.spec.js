@@ -23,7 +23,7 @@ describe("PokerPlayer", () => {
     expect(wrapper.text()).toContain("Constance Wu");
   });
 
-  it("displays an avatar based on the player's name", () => {
+  it("displays an avatar based on the player's name when the show estimate prop is false", () => {
     const wrapper = shallowMount(PokerPlayer, {
       props: {
         name: "Constance Wu",
@@ -32,6 +32,7 @@ describe("PokerPlayer", () => {
       },
     });
 
+    expect(wrapper.text()).not.toContain("3");
     expect(wrapper.find("img").exists()).toBe(true);
     expect(wrapper.find("img").attributes("src")).toBe(
       "data:image/svg+xml;utf8,image-url",
@@ -49,21 +50,5 @@ describe("PokerPlayer", () => {
 
     expect(wrapper.text()).toContain("3");
     expect(wrapper.find("img").exists()).toBe(false);
-  });
-
-  it("displays the player's avatar when the show estimate prop is false", () => {
-    const wrapper = shallowMount(PokerPlayer, {
-      props: {
-        name: "Constance Wu",
-        estimate: 3,
-        showEstimate: false,
-      },
-    });
-
-    expect(wrapper.text()).not.toContain("3");
-    expect(wrapper.find("img").exists()).toBe(true);
-    expect(wrapper.find("img").attributes("src")).toBe(
-      "data:image/svg+xml;utf8,image-url",
-    );
   });
 });

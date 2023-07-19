@@ -63,7 +63,23 @@ const joinGame = (name) => {
 <template>
   <h1>The Game: {{ state }}</h1>
   <div class="bg-gray-100 p-8">
-    <PokerPlayer :estimate="3" :show-estimate="false" name="Constance Wu" />
+    <PokerPlayer
+      :estimate="3"
+      :show-estimate="true"
+      class="mb-2"
+      name="Constance Wu"
+    />
+    <PokerPlayer
+      :estimate="undefined"
+      :name="undefined"
+      :show-estimate="true"
+      class="mb-2"
+    />
+    <PokerPlayer
+      :estimate="undefined"
+      :show-estimate="false"
+      name="Phil Larson"
+    />
   </div>
   <button
     v-show="state === 'estimating'"
