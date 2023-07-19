@@ -1,12 +1,20 @@
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { shallowMount } from "@vue/test-utils";
 import PokerTable from "@/Components/PokerTable.vue";
+import PokerPlayer from "@/Components/PokerPlayer.vue";
+
+vi.mock("minidenticons", () => {
+  return { minidenticon: () => "image-url" };
+});
 
 describe("PokerTable", () => {
-  it("displays each player's name", () => {
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it("displays each player when show estimates is false", () => {
     const players = [
       [1, { name: "Constance", estimate: 5 }],
-      [2, { name: "Beth", estimate: 3 }],
       [3, { name: "Leslie", estimate: undefined }],
       [4, { name: undefined, estimate: undefined }],
     ];
@@ -18,17 +26,24 @@ describe("PokerTable", () => {
       },
     });
 
-    expect(wrapper.text()).toContain("Constance");
-    expect(wrapper.text()).toContain("Beth");
-    expect(wrapper.text()).toContain("Leslie");
-    expect(wrapper.text()).toContain("Anonymous");
+    const playerComponents = wrapper.findAllComponents(PokerPlayer);
+    expect(playerComponents.length).toBe(3);
+    expect(
+      playerComponents.every((c) => c.props("showEstimate") === false),
+    ).toBe(true);
+    expect(playerComponents[0].props("name")).toBe("Constance");
+    expect(playerComponents[0].props("estimate")).toBe(5);
+    expect(playerComponents[1].props("name")).toBe("Leslie");
+    expect(playerComponents[1].props("estimate")).toBeUndefined();
+    expect(playerComponents[2].props("name")).toBeUndefined();
+    expect(playerComponents[2].props("estimate")).toBeUndefined();
   });
 
-  it("displays each player's estimate if the show estimates prop is true", () => {
+  it("displays each player estimate when show estimates is true", () => {
     const players = [
       [1, { name: "Constance", estimate: 5 }],
-      [2, { name: "Beth", estimate: 3 }],
       [3, { name: "Leslie", estimate: undefined }],
+      [4, { name: undefined, estimate: undefined }],
     ];
 
     const wrapper = shallowMount(PokerTable, {
@@ -38,27 +53,33 @@ describe("PokerTable", () => {
       },
     });
 
-    expect(wrapper.text()).toContain("5");
-    expect(wrapper.text()).toContain("3");
-    expect(wrapper.text()).toContain("Didn't Guess!");
+    const playerComponents = wrapper.findAllComponents(PokerPlayer);
+    expect(playerComponents.length).toBe(3);
+    expect(
+      playerComponents.every((c) => c.props("showEstimate") === true),
+    ).toBe(true);
+    expect(playerComponents[0].props("name")).toBe("Constance");
+    expect(playerComponents[0].props("estimate")).toBe(5);
+    expect(playerComponents[1].props("name")).toBe("Leslie");
+    expect(playerComponents[1].props("estimate")).toBeUndefined();
+    expect(playerComponents[2].props("name")).toBeUndefined();
+    expect(playerComponents[2].props("estimate")).toBeUndefined();
   });
 
-  it("does not display each player's estimate if the show estimates prop is false", () => {
+  it("renders correctly", () => {
     const players = [
       [1, { name: "Constance", estimate: 5 }],
-      [2, { name: "Beth", estimate: 3 }],
       [3, { name: "Leslie", estimate: undefined }],
+      [4, { name: undefined, estimate: undefined }],
     ];
 
     const wrapper = shallowMount(PokerTable, {
       props: {
         players,
-        showEstimates: false,
+        showEstimates: true,
       },
     });
 
-    expect(wrapper.text()).not.toContain("5");
-    expect(wrapper.text()).not.toContain("3");
-    expect(wrapper.text()).not.toContain("Didn't Guess!");
+    expect(wrapper.element).toMatchSnapshot();
   });
 });

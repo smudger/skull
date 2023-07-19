@@ -1,0 +1,26 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PokerTable > renders correctly 1`] = `
+<ul>
+  
+  <li>
+    <poker-player-stub
+      estimate="5"
+      name="Constance"
+      showestimate="true"
+    />
+  </li>
+  <li>
+    <poker-player-stub
+      name="Leslie"
+      showestimate="true"
+    />
+  </li>
+  <li>
+    <poker-player-stub
+      showestimate="true"
+    />
+  </li>
+  
+</ul>
+`;
