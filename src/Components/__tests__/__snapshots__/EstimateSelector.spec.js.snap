@@ -6,7 +6,7 @@ exports[`EstimateSelector > renders correctly 1`] = `
 >
   
   <div
-    class="fixed bottom-0 inset-x-0 flex items-center justify-center bg-gray-50 p-2"
+    class="flex px-2 sm:px-0 gap-x-4 overflow-x-auto shadow-inner rounded bg-gray-100 sm:grid sm:grid-cols-6 lg:flex sm:shadow-none sm:bg-gray-50 sm:justify-items-center"
     id="headlessui-radiogroup-17"
     role="radiogroup"
   >
@@ -16,48 +16,44 @@ exports[`EstimateSelector > renders correctly 1`] = `
     >
       Estimate
     </label>
+    
     <div
-      class="flex px-2 gap-x-4 overflow-x-auto shadow-inner rounded bg-gray-100 sm:grid sm:grid-cols-6 lg:flex sm:shadow-none sm:bg-gray-50 sm:justify-items-center"
+      aria-checked="false"
+      class="cursor-pointer focus:outline-none ring-1 ring-inset ring-gray-300 bg-white text-gray-900 hover:bg-gray-50 flex items-center justify-center rounded-md shrink-0 text-lg sm:text-xl w-16 h-24 my-2 font-semibold uppercase"
+      id="headlessui-radiogroup-option-19"
+      role="radio"
     >
-      
-      <div
-        aria-checked="false"
-        class="cursor-pointer focus:outline-none ring-1 ring-inset ring-gray-300 bg-white text-gray-900 hover:bg-gray-50 flex items-center justify-center rounded-md shrink-0 text-lg sm:text-xl w-16 h-24 my-2 font-semibold uppercase"
-        id="headlessui-radiogroup-option-19"
-        role="radio"
+      <span
+        id="headlessui-label-20"
       >
-        <span
-          id="headlessui-label-20"
-        >
-          1
-        </span>
-      </div>
-      <div
-        aria-checked="false"
-        class="cursor-pointer focus:outline-none ring-1 ring-inset ring-gray-300 bg-white text-gray-900 hover:bg-gray-50 flex items-center justify-center rounded-md shrink-0 text-lg sm:text-xl w-16 h-24 my-2 font-semibold uppercase"
-        id="headlessui-radiogroup-option-21"
-        role="radio"
-      >
-        <span
-          id="headlessui-label-22"
-        >
-          2
-        </span>
-      </div>
-      <div
-        aria-checked="false"
-        class="cursor-pointer focus:outline-none ring-1 ring-inset ring-gray-300 bg-white text-gray-900 hover:bg-gray-50 flex items-center justify-center rounded-md shrink-0 text-lg sm:text-xl w-16 h-24 my-2 font-semibold uppercase"
-        id="headlessui-radiogroup-option-23"
-        role="radio"
-      >
-        <span
-          id="headlessui-label-24"
-        >
-          3
-        </span>
-      </div>
-      
+        1
+      </span>
     </div>
+    <div
+      aria-checked="false"
+      class="cursor-pointer focus:outline-none ring-1 ring-inset ring-gray-300 bg-white text-gray-900 hover:bg-gray-50 flex items-center justify-center rounded-md shrink-0 text-lg sm:text-xl w-16 h-24 my-2 font-semibold uppercase"
+      id="headlessui-radiogroup-option-21"
+      role="radio"
+    >
+      <span
+        id="headlessui-label-22"
+      >
+        2
+      </span>
+    </div>
+    <div
+      aria-checked="false"
+      class="cursor-pointer focus:outline-none ring-1 ring-inset ring-gray-300 bg-white text-gray-900 hover:bg-gray-50 flex items-center justify-center rounded-md shrink-0 text-lg sm:text-xl w-16 h-24 my-2 font-semibold uppercase"
+      id="headlessui-radiogroup-option-23"
+      role="radio"
+    >
+      <span
+        id="headlessui-label-24"
+      >
+        3
+      </span>
+    </div>
+    
   </div>
   
 </div>

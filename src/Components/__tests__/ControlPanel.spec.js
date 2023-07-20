@@ -155,4 +155,15 @@ describe("ControlPanel", () => {
 
     expect(navigator.clipboard.writeText).toHaveBeenCalledWith(location.href);
   });
+
+  it("renders correctly", async () => {
+    const wrapper = shallowMount(ControlPanel, {
+      props: {
+        gameState: "estimating",
+        estimateOptions: ["1", "2", "3"],
+      },
+    });
+
+    expect(wrapper.element).toMatchSnapshot();
+  });
 });
