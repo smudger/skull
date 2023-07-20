@@ -3,8 +3,8 @@ import * as Y from "yjs";
 import { WebrtcProvider } from "y-webrtc";
 import { onMounted, ref } from "vue";
 import JoinGameModal from "@/Components/JoinGameModal.vue";
-import EstimateSelector from "@/Components/EstimateSelector.vue";
 import PokerTable from "@/Components/PokerTable.vue";
+import ControlPanel from "@/Components/ControlPanel.vue";
 
 const props = defineProps({
   id: { type: String, required: true },
@@ -79,12 +79,11 @@ const joinGame = (name) => {
       Hide
     </button>
     <PokerTable :players="players" :show-estimates="state === 'showing'" />
-    <div v-show="state === 'estimating'">
-      <EstimateSelector
-        :options="[0, 0.5, 1, 2, 3, 5, 8, 13, 20, 40, 100, '?']"
-        @change="setEstimate"
-      />
-    </div>
+    <ControlPanel
+      :estimate-options="[0, 0.5, 1, 2, 3, 5, 8, 13, 20, 40, 100, '?']"
+      :game-state="state"
+      @estimate-changed="setEstimate"
+    />
     <JoinGameModal :show="showJoinGameModal" @join="joinGame" />
   </div>
 </template>
