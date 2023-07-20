@@ -16,7 +16,7 @@ const copyGameLinkToClipboard = () => {
   <div
     class="fixed bottom-0 inset-x-0 flex items-center sm:items-end sm:justify-center flex-col sm:flex-row bg-gray-50 p-4 space-y-2 sm:space-y-0"
   >
-    <div v-show="gameState === 'estimating'" class="max-w-full sm:mr-4">
+    <div v-if="gameState === 'estimating'" class="max-w-full sm:mr-4">
       <EstimateSelector
         :options="estimateOptions"
         @change="$emit('estimate-changed', $event)"

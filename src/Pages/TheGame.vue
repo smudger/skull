@@ -30,6 +30,10 @@ onMounted(() => {
 const state = ref(ygame.get("state"));
 
 ygame.observe(() => {
+  if (state.value === "showing" && ygame.get("state") === "estimating") {
+    setEstimate(undefined);
+  }
+
   state.value = ygame.get("state");
 });
 

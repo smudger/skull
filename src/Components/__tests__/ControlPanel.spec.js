@@ -8,7 +8,7 @@ describe("ControlPanel", () => {
     vi.clearAllMocks();
   });
 
-  it('shows the estimate selector when the game state is "estimating"', () => {
+  it('displays the estimate selector when the game state is "estimating"', () => {
     const wrapper = shallowMount(ControlPanel, {
       attachTo: document.body,
       props: {
@@ -20,7 +20,7 @@ describe("ControlPanel", () => {
     expect(wrapper.findComponent(EstimateSelector).isVisible()).toBe(true);
   });
 
-  it('does not show the estimate selector when the game state is "showing"', () => {
+  it('does not display the estimate selector when the game state is "showing"', () => {
     const wrapper = shallowMount(ControlPanel, {
       attachTo: document.body,
       props: {
@@ -29,7 +29,7 @@ describe("ControlPanel", () => {
       },
     });
 
-    expect(wrapper.findComponent(EstimateSelector).isVisible()).toBe(false);
+    expect(wrapper.findComponent(EstimateSelector).exists()).toBe(false);
   });
 
   it("emits the estimate changed event from when the estimate changes", async () => {
