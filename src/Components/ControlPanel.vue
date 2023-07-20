@@ -2,11 +2,15 @@
 import EstimateSelector from "@/Components/EstimateSelector.vue";
 
 defineProps({
-  gameState: { type: String, required: true },
+  gameState: { type: String, default: undefined },
   estimateOptions: { type: Array, required: true },
 });
 
 defineEmits(["estimate-changed", "reveal-cards", "reset-game"]);
+
+const copyGameLinkToClipboard = () => {
+  navigator.clipboard.writeText(window.location.href);
+};
 </script>
 <template>
   <div v-show="gameState === 'estimating'">
@@ -32,5 +36,13 @@ defineEmits(["estimate-changed", "reveal-cards", "reset-game"]);
     @click="$emit('reset-game')"
   >
     Reset
+  </button>
+  <button
+    class="rounded-md bg-indigo-50 px-3.5 py-2.5 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100"
+    data-test="copy-game-link"
+    type="button"
+    @click="copyGameLinkToClipboard"
+  >
+    Copy Game Link
   </button>
 </template>

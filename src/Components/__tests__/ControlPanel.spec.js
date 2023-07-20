@@ -1,9 +1,13 @@
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { shallowMount } from "@vue/test-utils";
 import ControlPanel from "@/Components/ControlPanel.vue";
 import EstimateSelector from "@/Components/EstimateSelector.vue";
 
 describe("ControlPanel", () => {
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
+
   it('shows the estimate selector when the game state is "estimating"', () => {
     const wrapper = shallowMount(ControlPanel, {
       attachTo: document.body,
@@ -129,5 +133,26 @@ describe("ControlPanel", () => {
     await wrapper.find('button[data-test="reset-game"]').trigger("click");
 
     expect(wrapper.emitted()).toHaveProperty("reset-game");
+  });
+
+  it("displays a button to copy a link to the game to your clipboard", async () => {
+    const navigator = { clipboard: { writeText: vi.fn() } };
+    const location = {
+      href: "https://planningpoker.example.com/game/123?code=123456",
+    };
+
+    vi.stubGlobal("navigator", navigator);
+    vi.stubGlobal("location", location);
+
+    const wrapper = shallowMount(ControlPanel, {
+      props: {
+        gameState: "showing",
+        estimateOptions: ["1", "2", "3"],
+      },
+    });
+
+    await wrapper.find('button[data-test="copy-game-link"]').trigger("click");
+
+    expect(navigator.clipboard.writeText).toHaveBeenCalledWith(location.href);
   });
 });
