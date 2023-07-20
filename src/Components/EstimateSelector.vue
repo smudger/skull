@@ -10,7 +10,7 @@ defineEmits(["change"]);
 
 <template>
   <RadioGroup
-    class="flex px-2 sm:px-0 gap-x-4 overflow-x-auto shadow-inner rounded bg-gray-100 sm:grid sm:grid-cols-6 lg:flex sm:shadow-none sm:bg-gray-50 sm:justify-items-center"
+    class="flex px-2 gap-x-4 overflow-x-auto shadow-inner rounded bg-gray-100 sm:grid sm:grid-cols-6 lg:flex sm:shadow-none sm:bg-gray-50 sm:justify-items-center"
     name="estimate"
     @update:model-value="$emit('change', $event)"
   >
