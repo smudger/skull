@@ -31,7 +31,7 @@ describe("ControlPanel", () => {
   it("emits the estimate changed event from when the estimate changes", async () => {
     const wrapper = shallowMount(ControlPanel, {
       props: {
-        gameState: "showing",
+        gameState: "estimating",
         estimateOptions: ["1", "2", "3"],
       },
     });
@@ -47,7 +47,7 @@ describe("ControlPanel", () => {
 
     const wrapper = shallowMount(ControlPanel, {
       props: {
-        gameState: "showing",
+        gameState: "estimating",
         estimateOptions,
       },
     });
@@ -55,5 +55,79 @@ describe("ControlPanel", () => {
     expect(wrapper.findComponent(EstimateSelector).props("options")).toEqual(
       estimateOptions,
     );
+  });
+
+  it("displays a reveal cards button when the game state is estimating", () => {
+    const wrapper = shallowMount(ControlPanel, {
+      props: {
+        gameState: "estimating",
+        estimateOptions: ["1", "2", "3"],
+      },
+    });
+
+    expect(wrapper.find('button[data-test="reveal-cards"]').exists()).toBe(
+      true,
+    );
+  });
+
+  it("does not display a reveal cards button when the game state is showing", () => {
+    const wrapper = shallowMount(ControlPanel, {
+      props: {
+        gameState: "showing",
+        estimateOptions: ["1", "2", "3"],
+      },
+    });
+
+    expect(wrapper.find('button[data-test="reveal-cards"]').exists()).toBe(
+      false,
+    );
+  });
+
+  it("emits a reveal cards event when the reveal cards button is clicked", async () => {
+    const wrapper = shallowMount(ControlPanel, {
+      props: {
+        gameState: "estimating",
+        estimateOptions: ["1", "2", "3"],
+      },
+    });
+
+    await wrapper.find('button[data-test="reveal-cards"]').trigger("click");
+
+    expect(wrapper.emitted()).toHaveProperty("reveal-cards");
+  });
+
+  it("displays a reset game button when the game state is showing", () => {
+    const wrapper = shallowMount(ControlPanel, {
+      props: {
+        gameState: "showing",
+        estimateOptions: ["1", "2", "3"],
+      },
+    });
+
+    expect(wrapper.find('button[data-test="reset-game"]').exists()).toBe(true);
+  });
+
+  it("does not display a reset game button when the game state is estimating", () => {
+    const wrapper = shallowMount(ControlPanel, {
+      props: {
+        gameState: "estimating",
+        estimateOptions: ["1", "2", "3"],
+      },
+    });
+
+    expect(wrapper.find('button[data-test="reset-game"]').exists()).toBe(false);
+  });
+
+  it("emits a reset game event when the reset game button is clicked", async () => {
+    const wrapper = shallowMount(ControlPanel, {
+      props: {
+        gameState: "showing",
+        estimateOptions: ["1", "2", "3"],
+      },
+    });
+
+    await wrapper.find('button[data-test="reset-game"]').trigger("click");
+
+    expect(wrapper.emitted()).toHaveProperty("reset-game");
   });
 });
