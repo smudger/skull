@@ -6,7 +6,7 @@ exports[`EstimateSelector > renders correctly 1`] = `
 >
   
   <div
-    class="fixed bottom-0 inset-x-0 flex items-center justify-center px-4 py-6"
+    class="fixed bottom-0 inset-x-0 flex items-center justify-center bg-gray-50 p-2"
     id="headlessui-radiogroup-17"
     role="radiogroup"
   >
@@ -17,12 +17,12 @@ exports[`EstimateSelector > renders correctly 1`] = `
       Estimate
     </label>
     <div
-      class="grid grid-cols-4 gap-3 sm:grid-cols-6 lg:grid-cols-12"
+      class="flex px-2 gap-x-4 overflow-x-auto shadow-inner rounded bg-gray-100 sm:grid sm:grid-cols-6 lg:flex sm:shadow-none sm:bg-gray-50 sm:justify-items-center"
     >
       
       <div
         aria-checked="false"
-        class="cursor-pointer focus:outline-none ring-1 ring-inset ring-gray-300 bg-white text-gray-900 hover:bg-gray-50 flex items-center justify-center rounded-md px-6 py-8 text-sm font-semibold uppercase sm:flex-1"
+        class="cursor-pointer focus:outline-none ring-1 ring-inset ring-gray-300 bg-white text-gray-900 hover:bg-gray-50 flex items-center justify-center rounded-md shrink-0 text-lg sm:text-xl w-16 h-24 my-2 font-semibold uppercase"
         id="headlessui-radiogroup-option-19"
         role="radio"
       >
@@ -34,7 +34,7 @@ exports[`EstimateSelector > renders correctly 1`] = `
       </div>
       <div
         aria-checked="false"
-        class="cursor-pointer focus:outline-none ring-1 ring-inset ring-gray-300 bg-white text-gray-900 hover:bg-gray-50 flex items-center justify-center rounded-md px-6 py-8 text-sm font-semibold uppercase sm:flex-1"
+        class="cursor-pointer focus:outline-none ring-1 ring-inset ring-gray-300 bg-white text-gray-900 hover:bg-gray-50 flex items-center justify-center rounded-md shrink-0 text-lg sm:text-xl w-16 h-24 my-2 font-semibold uppercase"
         id="headlessui-radiogroup-option-21"
         role="radio"
       >
@@ -46,7 +46,7 @@ exports[`EstimateSelector > renders correctly 1`] = `
       </div>
       <div
         aria-checked="false"
-        class="cursor-pointer focus:outline-none ring-1 ring-inset ring-gray-300 bg-white text-gray-900 hover:bg-gray-50 flex items-center justify-center rounded-md px-6 py-8 text-sm font-semibold uppercase sm:flex-1"
+        class="cursor-pointer focus:outline-none ring-1 ring-inset ring-gray-300 bg-white text-gray-900 hover:bg-gray-50 flex items-center justify-center rounded-md shrink-0 text-lg sm:text-xl w-16 h-24 my-2 font-semibold uppercase"
         id="headlessui-radiogroup-option-23"
         role="radio"
       >
