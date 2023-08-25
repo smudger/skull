@@ -15,7 +15,9 @@ const props = defineProps({
 const ydoc = new Y.Doc();
 // Registered with a WebRTC provider
 const provider = new WebrtcProvider(props.id, ydoc, {
-  signaling: ["ws://localhost:4444"],
+  signaling: [
+    "wss://be2nvrvotd.execute-api.eu-west-1.amazonaws.com/Production",
+  ],
   password: props.code,
 });
 
