@@ -10,8 +10,8 @@ exports[`PokerTable > renders correctly 1`] = `
   >
     <poker-player-stub
       estimate="5"
-      ishighest="true"
-      islowest="true"
+      ishighest="false"
+      islowest="false"
       name="Constance"
       showestimate="true"
     />

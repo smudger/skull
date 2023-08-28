@@ -1,7 +1,11 @@
 <script setup>
 import { computed } from "vue";
 import { minidenticon } from "minidenticons";
-import { CheckIcon } from "@heroicons/vue/24/solid";
+import {
+  CheckIcon,
+  ChevronDoubleDownIcon,
+  ChevronDoubleUpIcon,
+} from "@heroicons/vue/24/solid";
 
 const props = defineProps({
   name: { type: String, default: undefined },
@@ -36,13 +40,29 @@ const avatar = computed(
     <div>
       <div
         v-if="showEstimate && name"
-        :class="[estimate !== undefined ? 'bg-indigo-600' : '']"
-        class="h-16 w-16 sm:h-32 sm:w-32 shrink-0 flex items-center justify-center rounded-full"
+        :class="[
+          estimate !== undefined ? 'bg-indigo-600' : '',
+          isHighest ? 'ring-4 ring-red-600' : '',
+          isLowest ? 'ring-4 ring-green-600' : '',
+        ]"
+        class="h-16 w-16 sm:h-32 sm:w-32 shrink-0 flex items-center justify-center rounded-full relative"
       >
         <span
           class="text-white font-mono font-semibold leading-7 tracking-tight text-xl sm:text-4xl"
         >
           {{ estimate }}
+        </span>
+        <span
+          v-if="isHighest"
+          class="absolute right-0 top-0 sm:right-1 sm:top-1 block h-4 sm:h-6 w-4 sm:w-6 rounded-full bg-red-600 ring-2 ring-white text-white"
+        >
+          <ChevronDoubleUpIcon />
+        </span>
+        <span
+          v-if="isLowest"
+          class="absolute right-0 top-0 sm:right-1 sm:top-1 block h-4 sm:h-6 w-4 sm:w-6 rounded-full bg-green-600 ring-2 ring-white text-white"
+        >
+          <ChevronDoubleDownIcon />
         </span>
       </div>
       <div v-else-if="name" class="relative">

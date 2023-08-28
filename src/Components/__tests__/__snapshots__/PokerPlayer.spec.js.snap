@@ -47,12 +47,80 @@ exports[`PokerPlayer > renders correctly when show estimate is true 1`] = `
   </div>
   <div>
     <div
-      class="bg-indigo-600 h-16 w-16 sm:h-32 sm:w-32 shrink-0 flex items-center justify-center rounded-full"
+      class="bg-indigo-600 h-16 w-16 sm:h-32 sm:w-32 shrink-0 flex items-center justify-center rounded-full relative"
     >
       <span
         class="text-white font-mono font-semibold leading-7 tracking-tight text-xl sm:text-4xl"
       >
         3
+      </span>
+      <!--v-if-->
+      <!--v-if-->
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PokerPlayer > renders correctly when show estimate is true and it is the highest estimate 1`] = `
+<div
+  class="bg-gray-800 border-gray-800 rounded-2xl border-2 justify-between flex sm:flex-col-reverse w-80 sm:w-64 items-center px-6 py-4 space-x-2 sm:space-x-0"
+>
+  <div
+    class="sm:mt-4"
+  >
+    <h3
+      class="text-base font-semibold leading-7 tracking-tight text-white whitespace-nowrap truncate"
+    >
+      Constance Wu
+    </h3>
+  </div>
+  <div>
+    <div
+      class="bg-indigo-600 ring-4 ring-red-600 h-16 w-16 sm:h-32 sm:w-32 shrink-0 flex items-center justify-center rounded-full relative"
+    >
+      <span
+        class="text-white font-mono font-semibold leading-7 tracking-tight text-xl sm:text-4xl"
+      >
+        3
+      </span>
+      <span
+        class="absolute right-0 top-0 sm:right-1 sm:top-1 block h-4 sm:h-6 w-4 sm:w-6 rounded-full bg-red-600 ring-2 ring-white text-white"
+      >
+        <render-stub />
+      </span>
+      <!--v-if-->
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PokerPlayer > renders correctly when show estimate is true and it is the lowest estimate 1`] = `
+<div
+  class="bg-gray-800 border-gray-800 rounded-2xl border-2 justify-between flex sm:flex-col-reverse w-80 sm:w-64 items-center px-6 py-4 space-x-2 sm:space-x-0"
+>
+  <div
+    class="sm:mt-4"
+  >
+    <h3
+      class="text-base font-semibold leading-7 tracking-tight text-white whitespace-nowrap truncate"
+    >
+      Constance Wu
+    </h3>
+  </div>
+  <div>
+    <div
+      class="bg-indigo-600 ring-4 ring-green-600 h-16 w-16 sm:h-32 sm:w-32 shrink-0 flex items-center justify-center rounded-full relative"
+    >
+      <span
+        class="text-white font-mono font-semibold leading-7 tracking-tight text-xl sm:text-4xl"
+      >
+        3
+      </span>
+      <!--v-if-->
+      <span
+        class="absolute right-0 top-0 sm:right-1 sm:top-1 block h-4 sm:h-6 w-4 sm:w-6 rounded-full bg-green-600 ring-2 ring-white text-white"
+      >
+        <render-stub />
       </span>
     </div>
   </div>

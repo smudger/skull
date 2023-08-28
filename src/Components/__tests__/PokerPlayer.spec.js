@@ -17,6 +17,8 @@ describe("PokerPlayer", () => {
         name: "Constance Wu",
         estimate: 3,
         showEstimate: false,
+        isHighest: false,
+        isLowest: false,
       },
     });
 
@@ -29,6 +31,8 @@ describe("PokerPlayer", () => {
         name: "Constance Wu",
         estimate: 3,
         showEstimate: false,
+        isHighest: false,
+        isLowest: false,
       },
     });
 
@@ -45,6 +49,8 @@ describe("PokerPlayer", () => {
         name: "Constance Wu",
         estimate: 3,
         showEstimate: true,
+        isHighest: false,
+        isLowest: false,
       },
     });
 
@@ -58,6 +64,8 @@ describe("PokerPlayer", () => {
         name: undefined,
         estimate: 3,
         showEstimate: true,
+        isHighest: false,
+        isLowest: false,
       },
     });
 
@@ -70,6 +78,8 @@ describe("PokerPlayer", () => {
         name: "Constance Wu",
         estimate: 3,
         showEstimate: false,
+        isHighest: false,
+        isLowest: false,
       },
     });
 
@@ -82,6 +92,36 @@ describe("PokerPlayer", () => {
         name: "Constance Wu",
         estimate: 3,
         showEstimate: true,
+        isHighest: false,
+        isLowest: false,
+      },
+    });
+
+    expect(wrapper.element).toMatchSnapshot();
+  });
+
+  it("renders correctly when show estimate is true and it is the highest estimate", () => {
+    const wrapper = shallowMount(PokerPlayer, {
+      props: {
+        name: "Constance Wu",
+        estimate: 3,
+        showEstimate: true,
+        isHighest: true,
+        isLowest: false,
+      },
+    });
+
+    expect(wrapper.element).toMatchSnapshot();
+  });
+
+  it("renders correctly when show estimate is true and it is the lowest estimate", () => {
+    const wrapper = shallowMount(PokerPlayer, {
+      props: {
+        name: "Constance Wu",
+        estimate: 3,
+        showEstimate: true,
+        isHighest: false,
+        isLowest: true,
       },
     });
 

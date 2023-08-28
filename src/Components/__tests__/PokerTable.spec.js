@@ -88,6 +88,60 @@ describe("PokerTable", () => {
     expect(playerComponents[4].props("isLowest")).toBe(false);
   });
 
+  it("does not calculate highest and lowest when there are no estimates", () => {
+    const players = [
+      [1, { name: "Constance", estimate: undefined }],
+      [2, { name: "Marie", estimate: undefined }],
+      [3, { name: "Jane", estimate: undefined }],
+    ];
+
+    const wrapper = shallowMount(PokerTable, {
+      props: {
+        players,
+        showEstimates: true,
+      },
+    });
+
+    const playerComponents = wrapper.findAllComponents(PokerPlayer);
+    expect(playerComponents.length).toBe(3);
+    expect(
+      playerComponents.every((c) => c.props("showEstimate") === true),
+    ).toBe(true);
+    expect(playerComponents.every((c) => c.props("isHighest") === false)).toBe(
+      true,
+    );
+    expect(playerComponents.every((c) => c.props("isLowest") === false)).toBe(
+      true,
+    );
+  });
+
+  it("does not calculate highest and lowest when there is only one unique estimate", () => {
+    const players = [
+      [1, { name: "Constance", estimate: 2 }],
+      [2, { name: "Marie", estimate: 2 }],
+      [3, { name: "Jane", estimate: undefined }],
+    ];
+
+    const wrapper = shallowMount(PokerTable, {
+      props: {
+        players,
+        showEstimates: true,
+      },
+    });
+
+    const playerComponents = wrapper.findAllComponents(PokerPlayer);
+    expect(playerComponents.length).toBe(3);
+    expect(
+      playerComponents.every((c) => c.props("showEstimate") === true),
+    ).toBe(true);
+    expect(playerComponents.every((c) => c.props("isHighest") === false)).toBe(
+      true,
+    );
+    expect(playerComponents.every((c) => c.props("isLowest") === false)).toBe(
+      true,
+    );
+  });
+
   it("renders correctly", () => {
     const players = [
       [1, { name: "Constance", estimate: 5 }],

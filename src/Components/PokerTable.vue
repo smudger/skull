@@ -10,15 +10,16 @@ const props = defineProps({
 const estimates = computed(() => {
   return props.players
     .map(([, player]) => player.estimate)
-    .filter((estimate) => estimate !== undefined);
+    .filter((estimate) => estimate !== undefined)
+    .filter((estimate, index, arr) => arr.indexOf(estimate) === index);
 });
 const lowestEstimate = computed(() => {
-  return estimates.value.length && props.showEstimates
+  return estimates.value.length > 1 && props.showEstimates
     ? Math.min(...estimates.value)
     : undefined;
 });
 const highestEstimate = computed(() => {
-  return estimates.value.length && props.showEstimates
+  return estimates.value.length > 1 && props.showEstimates
     ? Math.max(...estimates.value)
     : undefined;
 });
@@ -31,8 +32,8 @@ const highestEstimate = computed(() => {
     <li v-for="[playerId, player] in players" :key="playerId" class="mx-auto">
       <PokerPlayer
         :estimate="player.estimate"
-        :is-highest="showEstimates && player.estimate === highestEstimate"
-        :is-lowest="showEstimates && player.estimate === lowestEstimate"
+        :is-highest="!!player.estimate && player.estimate === highestEstimate"
+        :is-lowest="!!player.estimate && player.estimate === lowestEstimate"
         :name="player.name"
         :show-estimate="showEstimates"
       />
