@@ -10,6 +10,8 @@ exports[`PokerTable > renders correctly 1`] = `
   >
     <poker-player-stub
       estimate="5"
+      ishighest="false"
+      islowest="false"
       name="Constance"
       showestimate="true"
     />
@@ -18,6 +20,8 @@ exports[`PokerTable > renders correctly 1`] = `
     class="mx-auto"
   >
     <poker-player-stub
+      ishighest="false"
+      islowest="false"
       name="Leslie"
       showestimate="true"
     />
@@ -26,6 +30,8 @@ exports[`PokerTable > renders correctly 1`] = `
     class="mx-auto"
   >
     <poker-player-stub
+      ishighest="false"
+      islowest="false"
       showestimate="true"
     />
   </li>

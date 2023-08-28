@@ -1,7 +1,7 @@
 <script setup>
 import * as Y from "yjs";
 import { WebrtcProvider } from "y-webrtc";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 import JoinGameModal from "@/Components/JoinGameModal.vue";
 import PokerTable from "@/Components/PokerTable.vue";
 import ControlPanel from "@/Components/ControlPanel.vue";
@@ -27,15 +27,30 @@ onMounted(() => {
   }
 });
 
-const state = ref(ygame.get("state"));
+const game = ref(ygame.toJSON());
 
 ygame.observe(() => {
-  if (state.value === "showing" && ygame.get("state") === "estimating") {
-    setEstimate(undefined);
-  }
-
-  state.value = ygame.get("state");
+  game.value = ygame.toJSON();
 });
+
+const setGameProperty = (key, value) => {
+  ygame.set(key, value);
+};
+
+watch(
+  () => game.value.state,
+  (state) => {
+    switch (state) {
+      case "estimating":
+        resetGame();
+        break;
+    }
+  },
+);
+
+const resetGame = () => {
+  setEstimate(undefined);
+};
 
 const awareness = provider.awareness;
 
@@ -46,10 +61,6 @@ awareness.on("change", () => {
   me.value = awareness.getLocalState();
   players.value = Array.from(awareness.getStates().entries());
 });
-
-const setState = (state) => {
-  ygame.set("state", state);
-};
 
 const setEstimate = (estimate) => {
   awareness.setLocalStateField("estimate", estimate);
@@ -65,13 +76,13 @@ const joinGame = (name) => {
 
 <template>
   <div class="bg-gray-50 min-h-screen h-full pt-4 pb-72">
-    <PokerTable :players="players" :show-estimates="state === 'showing'" />
+    <PokerTable :players="players" :show-estimates="game.state === 'showing'" />
     <ControlPanel
       :estimate-options="[0, 0.5, 1, 2, 3, 5, 8, 13, 20, 40, 100, '?']"
-      :game-state="state"
+      :game-state="game.state"
       @estimate-changed="setEstimate"
-      @reveal-cards="setState('showing')"
-      @reset-game="setState('estimating')"
+      @reveal-cards="setGameProperty('state', 'showing')"
+      @reset-game="setGameProperty('state', 'estimating')"
     />
     <JoinGameModal :show="showJoinGameModal" @join="joinGame" />
   </div>
