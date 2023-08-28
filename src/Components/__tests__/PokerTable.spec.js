@@ -12,11 +12,12 @@ describe("PokerTable", () => {
     vi.clearAllMocks();
   });
 
-  it("displays each player when show estimates is false", () => {
+  it("displays each player in the provided order when show estimates is false", () => {
     const players = [
       [1, { name: "Constance", estimate: 5 }],
-      [3, { name: "Leslie", estimate: undefined }],
-      [4, { name: undefined, estimate: undefined }],
+      [2, { name: "Leslie", estimate: undefined }],
+      [3, { name: undefined, estimate: undefined }],
+      [4, { name: "Marie", estimate: 2 }],
     ];
 
     const wrapper = shallowMount(PokerTable, {
@@ -27,7 +28,7 @@ describe("PokerTable", () => {
     });
 
     const playerComponents = wrapper.findAllComponents(PokerPlayer);
-    expect(playerComponents.length).toBe(3);
+    expect(playerComponents.length).toBe(4);
     expect(
       playerComponents.every((c) => c.props("showEstimate") === false),
     ).toBe(true);
@@ -43,15 +44,19 @@ describe("PokerTable", () => {
     expect(playerComponents[2].props("estimate")).toBeUndefined();
     expect(playerComponents[2].props("isHighest")).toBe(false);
     expect(playerComponents[2].props("isLowest")).toBe(false);
+    expect(playerComponents[3].props("name")).toBe("Marie");
+    expect(playerComponents[3].props("estimate")).toBe(2);
+    expect(playerComponents[3].props("isHighest")).toBe(false);
+    expect(playerComponents[3].props("isLowest")).toBe(false);
   });
 
-  it("displays each player estimate when show estimates is true", () => {
+  it("displays each player in ascending order of estimate when show estimates is true", () => {
     const players = [
-      [1, { name: "Constance", estimate: 2 }],
-      [2, { name: "Marie", estimate: 3 }],
+      [1, { name: "Marie", estimate: 3 }],
+      [2, { name: "Leslie", estimate: undefined }],
       [3, { name: "Jane", estimate: 5 }],
-      [4, { name: "Leslie", estimate: undefined }],
-      [5, { name: undefined, estimate: undefined }],
+      [4, { name: undefined, estimate: undefined }],
+      [5, { name: "Constance", estimate: 2 }],
     ];
 
     const wrapper = shallowMount(PokerTable, {
