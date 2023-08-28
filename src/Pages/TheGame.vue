@@ -39,12 +39,18 @@ const setGameProperty = (key, value) => {
 
 watch(
   () => game.value.state,
-  (newState, oldState) => {
-    if (oldState === "showing" && newState === "estimating") {
-      setEstimate(undefined);
+  (state) => {
+    switch (state) {
+      case "estimating":
+        resetGame();
+        break;
     }
   },
 );
+
+const resetGame = () => {
+  setEstimate(undefined);
+};
 
 const awareness = provider.awareness;
 

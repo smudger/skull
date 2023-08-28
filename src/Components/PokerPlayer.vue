@@ -7,6 +7,8 @@ const props = defineProps({
   name: { type: String, default: undefined },
   estimate: { type: [String, Number], default: undefined },
   showEstimate: { type: Boolean, required: true },
+  isHighest: { type: Boolean, required: true },
+  isLowest: { type: Boolean, required: true },
 });
 
 const avatar = computed(

@@ -1,9 +1,26 @@
 <script setup>
 import PokerPlayer from "@/Components/PokerPlayer.vue";
+import { computed } from "vue";
 
-defineProps({
+const props = defineProps({
   players: { type: Array, required: true },
   showEstimates: { type: Boolean, required: true },
+});
+
+const estimates = computed(() => {
+  return props.players
+    .map(([, player]) => player.estimate)
+    .filter((estimate) => estimate !== undefined);
+});
+const lowestEstimate = computed(() => {
+  return estimates.value.length && props.showEstimates
+    ? Math.min(...estimates.value)
+    : undefined;
+});
+const highestEstimate = computed(() => {
+  return estimates.value.length && props.showEstimates
+    ? Math.max(...estimates.value)
+    : undefined;
 });
 </script>
 
@@ -14,6 +31,8 @@ defineProps({
     <li v-for="[playerId, player] in players" :key="playerId" class="mx-auto">
       <PokerPlayer
         :estimate="player.estimate"
+        :is-highest="showEstimates && player.estimate === highestEstimate"
+        :is-lowest="showEstimates && player.estimate === lowestEstimate"
         :name="player.name"
         :show-estimate="showEstimates"
       />
