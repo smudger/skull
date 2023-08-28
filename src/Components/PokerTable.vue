@@ -23,13 +23,30 @@ const highestEstimate = computed(() => {
     ? Math.max(...estimates.value)
     : undefined;
 });
+const sortedPlayers = computed(() => {
+  return props.showEstimates
+    ? [...props.players].sort(([, a], [, b]) => {
+        if (a.estimate === undefined) {
+          return 1;
+        }
+        if (b.estimate === undefined) {
+          return -1;
+        }
+        return a.estimate - b.estimate;
+      })
+    : props.players;
+});
 </script>
 
 <template>
   <ul
     class="w-full flex flex-col justify-between items-center gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6"
   >
-    <li v-for="[playerId, player] in players" :key="playerId" class="mx-auto">
+    <li
+      v-for="[playerId, player] in sortedPlayers"
+      :key="playerId"
+      class="mx-auto"
+    >
       <PokerPlayer
         :estimate="player.estimate"
         :is-highest="!!player.estimate && player.estimate === highestEstimate"
