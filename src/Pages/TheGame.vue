@@ -3,32 +3,24 @@ import { onMounted, ref, watch } from "vue";
 import JoinGameModal from "@/Components/JoinGameModal.vue";
 import PokerTable from "@/Components/PokerTable.vue";
 import ControlPanel from "@/Components/ControlPanel.vue";
-import { useYDoc } from "@/Composables/useYDoc.js";
+import { useGame } from "@/Composables/useGame.js";
 
 const props = defineProps({
   id: { type: String, required: true },
   code: { type: String, required: true },
 });
 
-const { ydoc, awareness } = useYDoc(props.id, props.code);
-
-const ygame = ydoc.getMap("game");
+const { game, setGameProperty, players, setPlayerProperty } = useGame(
+  props.id,
+  props.code,
+  import.meta.env.VITE_SIGNALING_URL,
+);
 
 onMounted(() => {
-  if (ygame.get("state") === undefined) {
-    ygame.set("state", "estimating");
+  if (game.value.state === undefined) {
+    setGameProperty("state", "estimating");
   }
 });
-
-const game = ref(ygame.toJSON());
-
-ygame.observe(() => {
-  game.value = ygame.toJSON();
-});
-
-const setGameProperty = (key, value) => {
-  ygame.set(key, value);
-};
 
 watch(
   () => game.value.state,
@@ -45,22 +37,14 @@ const resetGame = () => {
   setEstimate(undefined);
 };
 
-const players = ref(Array.from(awareness.getStates().entries()));
-const me = ref(awareness.getLocalState());
-
-awareness.on("change", () => {
-  me.value = awareness.getLocalState();
-  players.value = Array.from(awareness.getStates().entries());
-});
-
 const setEstimate = (estimate) => {
-  awareness.setLocalStateField("estimate", estimate);
+  setPlayerProperty("estimate", estimate);
 };
 
 const showJoinGameModal = ref(true);
 
 const joinGame = (name) => {
-  awareness.setLocalStateField("name", name);
+  setPlayerProperty("name", name);
   showJoinGameModal.value = false;
 };
 </script>
