@@ -1,23 +1,16 @@
 <script setup>
-import * as Y from "yjs";
-import { WebrtcProvider } from "y-webrtc";
 import { onMounted, ref, watch } from "vue";
 import JoinGameModal from "@/Components/JoinGameModal.vue";
 import PokerTable from "@/Components/PokerTable.vue";
 import ControlPanel from "@/Components/ControlPanel.vue";
+import { useYDoc } from "@/Composables/useYDoc.js";
 
 const props = defineProps({
   id: { type: String, required: true },
   code: { type: String, required: true },
 });
 
-// A new Y document
-const ydoc = new Y.Doc();
-// Registered with a WebRTC provider
-const provider = new WebrtcProvider(props.id, ydoc, {
-  signaling: [import.meta.env.VITE_SIGNALING_URL],
-  password: props.code,
-});
+const { ydoc, awareness } = useYDoc(props.id, props.code);
 
 const ygame = ydoc.getMap("game");
 
@@ -51,8 +44,6 @@ watch(
 const resetGame = () => {
   setEstimate(undefined);
 };
-
-const awareness = provider.awareness;
 
 const players = ref(Array.from(awareness.getStates().entries()));
 const me = ref(awareness.getLocalState());
