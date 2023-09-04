@@ -14,7 +14,7 @@ const code = Array(6)
         class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
       >
         <div
-          class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#fef3c7] to-[#f59e0b] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+          class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ffe4e6] to-[#be123c] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
           style="
             clip-path: polygon(
               74.1% 44.1%,
@@ -55,7 +55,7 @@ const code = Array(6)
                 params: { id },
                 query: { code },
               }"
-              class="rounded-md bg-amber-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
+              class="rounded-md bg-rose-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600"
               >Start a new game</RouterLink
             >
           </div>
@@ -66,7 +66,7 @@ const code = Array(6)
         class="absolute inset-x-0 top-[calc(100%-17rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-37rem)]"
       >
         <div
-          class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr to-[#fef3c7] from-[#f59e0b] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
+          class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#fecdd3] to-[#9f1239] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
           style="
             clip-path: polygon(
               74.1% 44.1%,

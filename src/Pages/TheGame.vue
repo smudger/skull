@@ -50,7 +50,7 @@ const joinGame = (name) => {
 </script>
 
 <template>
-  <div class="bg-gray-50 min-h-screen h-full pt-4 pb-72">
+  <div class="bg-gray-900 min-h-screen h-full pt-4 pb-72">
     <PokerTable :players="players" :show-estimates="game.state === 'showing'" />
     <ControlPanel
       :estimate-options="[0, 0.5, 1, 2, 3, 5, 8, 13, 20, 40, 100, '?']"
