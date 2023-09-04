@@ -43,10 +43,49 @@ const setEstimate = (estimate) => {
 
 const showJoinGameModal = ref(true);
 
-const joinGame = (name) => {
-  setPlayerProperty("name", name);
+const joinGame = (player) => {
+  setPlayerProperty("name", player.name);
   showJoinGameModal.value = false;
 };
+
+const decks = [
+  {
+    name: "Pink",
+    bgColor: "bg-pink-500",
+    selectedColor: "ring-pink-500",
+    isAssigned: true,
+  },
+  {
+    name: "Purple",
+    bgColor: "bg-purple-500",
+    selectedColor: "ring-purple-500",
+    isAssigned: false,
+  },
+  {
+    name: "Blue",
+    bgColor: "bg-blue-500",
+    selectedColor: "ring-blue-500",
+    isAssigned: false,
+  },
+  {
+    name: "Green",
+    bgColor: "bg-green-500",
+    selectedColor: "ring-green-500",
+    isAssigned: true,
+  },
+  {
+    name: "Yellow",
+    bgColor: "bg-yellow-500",
+    selectedColor: "ring-yellow-500",
+    isAssigned: false,
+  },
+  {
+    name: "Orange",
+    bgColor: "bg-orange-500",
+    selectedColor: "ring-orange-500",
+    isAssigned: false,
+  },
+];
 </script>
 
 <template>
@@ -59,6 +98,6 @@ const joinGame = (name) => {
       @reveal-cards="setGameProperty('state', 'showing')"
       @reset-game="setGameProperty('state', 'estimating')"
     />
-    <JoinGameModal :show="showJoinGameModal" @join="joinGame" />
+    <JoinGameModal :show="showJoinGameModal" :decks="decks" @join="joinGame" />
   </div>
 </template>
